@@ -1,0 +1,52 @@
+﻿@model _2017VisualStudioMVC.Models.tbl_user
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+@using (Html.BeginForm("SignUp", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mb-5">
+            <span class="display-6 fw-bold text-danger text-center mb-5">Sign Up</span>
+            @Html.ValidationSummary("Fix these errors", new { @class = "text-danger" })
+            <span class="text-danger">@ViewBag.error</span>
+            <div class="input-group mt-2">
+                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                @Html.TextBoxFor(x => x.u_name, new { @class = "form-control", @placeholder = "Fullname" })
+                @Html.ValidationMessageFor(x => x.u_name, "*", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                @Html.TextBoxFor(x => x.u_email, new { @class = "form-control", @placeholder = "Email" })
+                @Html.ValidationMessageFor(x => x.u_email, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                @Html.PasswordFor(x => x.u_password, new { @class = "form-control", @placeholder = "Password" })
+                @Html.ValidationMessageFor(x => x.u_password, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-phone"></i></div>
+                @Html.TextBoxFor(x => x.u_contact, new { @class = "form-control", @placeholder = "Contact" })
+                @Html.ValidationMessageFor(x => x.u_contact, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-image"></i></div>
+                <input type="file" id="imgfile" name="imgfile" class="form-control" required="required" />
+                @Html.ValidationMessageFor(x => x.u_image, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-2">
+                <input type="submit" class="btn btn-success w-100" value="Sign Up" />
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+
+    </div>
+
+}
+
+
+

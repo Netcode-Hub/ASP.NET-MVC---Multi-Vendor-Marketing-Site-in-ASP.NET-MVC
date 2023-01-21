@@ -1,0 +1,35 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<_2017VisualStudioMVC.Models.tbl_product>
+@{
+    ViewBag.Title = "View Products";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@if (Model != null)
+{
+    int x = 0;
+    foreach (var item in Model)
+    {
+            x++;
+        <div class="col-lg-3 col-md-3 col-sm-12 mt-3">
+            <div class="card border-0 d-inline-flex w-75" style="border-radius: 24px; ">
+                <img src="@Url.Content(item.pro_image)" class="card-img-top" height="230" />
+                <h4 class="text-center"> @Html.ActionLink(item.pro_name, "ViewAd", new { id = item.pro_id }, new { @class = "text-danger text-center fw-bold text-decoration-none" }) </h4>
+            </div>
+        </div>
+
+
+        }
+        <h3 class="text-success">@x  result(s) found</h3>
+    }
+
+
+
+<div class="text-center">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("Ads", new { page }))
+</div>
+

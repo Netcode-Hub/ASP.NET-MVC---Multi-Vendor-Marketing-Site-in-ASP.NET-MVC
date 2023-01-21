@@ -1,0 +1,55 @@
+﻿@model _2017VisualStudioMVC.Models.tbl_product
+@{
+    ViewBag.Title = "Create Ad";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@using (Html.BeginForm("CreateAd", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mb-5">
+            <span class="display-6 fw-bold text-danger text-center mb-5">Post An Ad</span>
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <span class="text-danger">@ViewBag.error</span>
+            <div class="input-group mt-2">
+                <div class="input-group-text"><i class="fa fa-microchip"></i></div>
+                @Html.DropDownListFor(x => x.pro_fk_cat, ViewBag.categoryList as SelectList, "---select---", new { @class="form-control"})
+                @Html.ValidationMessageFor(x => x.pro_fk_cat, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                @Html.TextBoxFor(x => x.pro_name, new { @class = "form-control", @placeholder = "Product Name" })
+                @Html.ValidationMessageFor(x => x.pro_name, "*", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                @Html.TextBoxFor(x => x.pro_price, new { @class = "form-control", @placeholder = "Price" })
+                @Html.ValidationMessageFor(x => x.pro_price, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                @Html.TextAreaFor(x => x.pro_des, new { @class = "form-control", @placeholder = "Description" })
+                @Html.ValidationMessageFor(x => x.pro_des, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text"><i class="fa fa-image"></i></div>
+                <input type="file" id="imgfile" name="imgfile" class="form-control" required="required" />
+                @Html.ValidationMessageFor(x => x.pro_image, "*", new { @class = "text-danger" })
+            </div>
+            <div class="input-group mt-2">
+                <input type="submit" class="btn btn-success w-100" value="Post Ad" />
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+
+    </div>
+
+}
+
+
+
+
+

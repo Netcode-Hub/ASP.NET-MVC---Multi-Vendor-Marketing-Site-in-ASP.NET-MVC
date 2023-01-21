@@ -1,0 +1,82 @@
+﻿@model _2017VisualStudioMVC.Models.ViewAdModel
+@{
+    ViewBag.Title = "ViewAd";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="col-md-2"></div>
+<div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="card-header"><h3 class="text-success fw-bold text-center">Product Description</h3></div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                            <tr>
+                                <td>
+                                    <div class="m-4 border-2 d-inline-flex w-75" style="border-radius: 24px; margin-left:20px;">
+                                        <img src="@Url.Content(@Model.pro_image)" class="card-img-top" height="230" />
+                                    </div>
+                                </td>
+                            
+                              <td>
+                           
+                        <table class="table table-striped w-75">
+                            <tr>
+                                <td><i class="fa fa-user-cog text-danger"></i> Name: </td>
+                                <td class="text-muted"> @Model.pro_name</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-money-bill text-danger"></i> Price:</td>
+                                <td class="text-muted"><i class="fa fa-cedi-sign"></i> @Model.pro_price</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-info-circle text-danger"></i> Infomation:</td>
+                                <td class="text-muted"> @Model.pro_des</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-info-circle text-danger"></i> Category:</td>
+                                <td class="text-muted"> @Model.cat_name</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><i class="fa fa-user text-danger"></i> Posted By: </td>
+                                <td class="text-info">@Model.u_name </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-phone-flip text-danger"></i> Contact:</td>
+                                <td class="text-info"> @Model.u_contact</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-envelope-open text-danger"></i> Email:</td>
+                                <td class="text-info"> @Model.u_email</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="m-4 border-2 d-inline-flex w-25" style="border-radius: 24px; margin-left:20px;">
+                                        <img src="@Url.Content(@Model.u_image)" class="card-img-top" width="150" height="100" />
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-header bg-light">
+            <table class="table">
+                <tr>
+                    <td>
+                        @if (Convert.ToInt32(Session["u_id"]) == Convert.ToInt32(Model.pro_fk_user))
+                        {
+                            @Html.ActionLink("Delete Ad", "DeleteAd", new { id = Model.pro_id }, new { @class = "btn btn-danger" })
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Close Ad", "Index", new {page = Request["page"] }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+
+

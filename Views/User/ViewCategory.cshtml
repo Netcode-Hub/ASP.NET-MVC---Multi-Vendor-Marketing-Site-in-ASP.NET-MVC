@@ -1,0 +1,34 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<_2017VisualStudioMVC.Models.tbl_category>
+@{
+    ViewBag.Title = "View Category";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<p class="display-6 text-center fw-bold text-danger">Categories</p>
+@if (Model != null)
+{
+    foreach (var items in Model)
+    {
+<div class="col-lg-3 col-md-4 col-sm-12">
+    <div class="card m-4 border-0 d-inline-flex w-75" style="border-radius: 24px; margin-left:20px;">
+        <img src="@Url.Content(items.cat_image)" class="card-img-top" height="230" />
+        <h4 class="text-center"> @Html.ActionLink(items.cat_name, "Ads", new { id = items.cat_id }, new { @class = "text-danger text-center fw-bold text-decoration-none" }) </h4>
+    </div>
+</div>
+            
+        
+
+
+    }
+}
+
+
+
+<div class="text-center">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("ViewCategory", new { page }))
+</div>
+

@@ -1,0 +1,48 @@
+﻿@model _2017VisualStudioMVC.Models.tbl_admin
+@{
+    ViewBag.Title = "Login";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <script src="~/Content/fontawesome/js/all.js"></script>
+    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 mb-5">
+                <span class="display-6 fw-bold text-success text-center mb-5">Login</span>
+                @Html.ValidationSummary("Fix these errors", new { @class="text-danger"})
+                <span class="text-danger">@ViewBag.error</span>
+                <div class="input-group mt-2">
+                    <div class="input-group-text"><i class="fa fa-user"></i></div>
+                    @Html.TextBoxFor(x => x.ad_username, new { @class = "form-control", @placeholder = "Username" })
+                    @Html.ValidationMessageFor(x => x.ad_username, "*", new { @class="text-danger"})
+                </div>
+                <label class="visually-hidden" for="autoSizingInputGroup">Password</label>
+                <div class="input-group mt-1">
+                    <div class="input-group-text">@@</div>
+                    @Html.PasswordFor(x => x.ad_password, new { @class = "form-control", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(x => x.ad_password, "*", new { @class = "text-danger" })
+                </div>
+                <div class="input-group mt-2">
+                    <input type="submit" class="btn btn-success w-100" value="Login" />
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+
+        </div>
+
+    }
+</body>
+</html>
